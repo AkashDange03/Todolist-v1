@@ -152,7 +152,7 @@ app.post("/delete", (req, res) => {
     const id_del = req.body.checkbox;
     const ListName = req.body.listName;
 
-    if (ListName === "Today") {
+    if (ListName === day) {
         Item.deleteOne({ _id: id_del }).then(() => {
             // console.log("deleted")
             res.redirect("/");
