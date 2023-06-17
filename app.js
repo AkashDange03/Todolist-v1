@@ -18,6 +18,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 
 
 let item = "";
+let day = date.getdate();
 
 mongoose.connect("mongodb+srv://akash-dange:L1xqZUf2owI4BBsu@cluster0.pfrohj1.mongodb.net/todolistDB").then(() => console.log("successfully connected")).catch((e) => console.log(e));
 
@@ -70,7 +71,7 @@ app.get("/", (req, res) => {
     // let day=date.getday();
 
 
-    let day = date.getdate();
+  
     Item.find({}).then((data) => {
         if (data.length === 0) {
             Item.insertMany(defaultitems).then(() => console.log("default inserted")).catch((e) => { console.log(e) });
@@ -151,7 +152,6 @@ app.post("/", (req, res) => {
 app.post("/delete", (req, res) => {
     const id_del = req.body.checkbox;
     const ListName = req.body.listName;
-
     if (ListName === day) {
         Item.deleteOne({ _id: id_del }).then(() => {
             // console.log("deleted")
