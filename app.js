@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
             res.redirect("/")
         }
         else {
-            res.render("index", { listtitle: "Today", newtasks: data });
+            res.render("index", { listtitle: day, newtasks: data });
         }
 
     }).catch((e) => {
@@ -122,7 +122,7 @@ app.post("/", (req, res) => {
     });
 
     let day = date.getdate();
-    if (listname === "Today") {
+    if (listname === day) {
         item.save().then(()=>res.redirect("/"));
         
     } else {
